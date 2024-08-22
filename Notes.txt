@@ -1,0 +1,91 @@
+Command used to install Django : pip install Django
+command used to upgrade Django: pip install django --upgrade
+
+install Django extension in VS code: Django (Baptiste Darthenay)
+
+Creating a project : $ django-admin startproject (project Name)
+The development server : come inside the project and use the code --> $ python manage.py runserver
+
+to create an APP: python manage.py startapp (APP Name)
+
+URL Dispatcher : The Url follows this path 
+MyFirstProject -->  Urls --> Home.urls and inside the Home Urls --> Whichever matches the input URL it will redirected that APP Urls
+
+Created a two folders (Static and template)
+static : add the static files like images, texts so on. 
+    - anyone come to the server and check this file.
+    - note : Don't keep imp files in static bcz it will not safe, it will cause a security loop holes...or security issues.
+    - Always keep the public files.
+
+    we have this in settings under project folder 
+
+templates :
+
+python manage.py makemigrations :   checks the changes 
+python manage.py migrate : 
+python manage.py createsuperuser : to create a super user
+
+{% csrf_token %} : used bcz when we submit the form make sure that form is submitted by u r website only not an external website so we used this.
+
+Models:
+that define a class
+frst step is to create a model in Models
+next "admin.site.register(Contact)" using this we have to register our models in admin.py.
+next from apps.py copy the name of the app and paste it under the settings >> Installed apps.
+ (register the model >> register the app >> app define and run the migrations)
+next >> python manage.py makemigrations 
+
+next >> python manage.py migrate   >> to create a table and apply the changes
+ now you can check in admin panel
+
+ makemigrations : create changes and stores in a file.
+ migrate : apply the pending changes created by makemigrations
+
+ def __str__(self):
+        return self.name 
+        
+    we can get the name of the admin
+
+To show an alerts in DJANGO : "Django messages framework"
+
+
+using shell
+PS E:\Django\myFirstProject> python manage.py shell 
+Python 3.11.1 (tags/v3.11.1:a7a450f, Dec  6 2022, 19:58:39) [MSC v.1934 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+(InteractiveConsole)
+
+Query 
+
+>>> from home.models import Contact
+>>> Contact.objects.all()
+<QuerySet [<Contact: Sachin RV>, <Contact: Saanvi>, <Contact: Sachin >]>
+>>> Contact.objects.all()[0]
+<Contact: Sachin RV>
+>>> Contact.objects.all()[0].name
+'Sachin RV'
+>>> Contact.objects.all()[0].email
+'sachinrv1999@gmail.com'
+>>> Contact.objects.all()[0].desc
+'Hello'
+
+Filtering
+
+>>> Contact.objects.filter(name="Sachin ")
+<QuerySet [<Contact: Sachin >]>   
+
+>> Multiple Query search
+>>> Contact.objects.filter(name="Sachin RV", phone ="7829607889")  
+<QuerySet [<Contact: Sachin RV>]>
+
+Change a value from database 
+--> ins means instance
+>>> Contact.objects.filter(name="Saanvi")[0]
+<Contact: Saanvi>
+>>> ins = Contact.objects.filter(name="Saanvi")[0] 
+>>> ins.phone = "9986770885"
+>>> ins.save()
+
+exit() to exit
+
+
