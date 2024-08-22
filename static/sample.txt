@@ -1,0 +1,3 @@
+Hello Sachin!!
+
+    This is the simple sample static file for example..
